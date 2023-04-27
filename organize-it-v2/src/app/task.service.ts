@@ -3,6 +3,7 @@ import { Task } from './task';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,17 @@ export class TaskService {
   }
 
   addTask(newTask: Task){
-    return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'task.json', newTask);
+    return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json', newTask);
+  }
+
+  getTasks() {
+    return this.http.get<Task[]>('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json')
+    .pipe(map(responseData => {
+      const taskArray: Task[]= [];
+      for(const key in responseData){
+        taskArray.push(responseData[key]);
+      }
+      return taskArray;
+    }));
   }
 }

@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../task.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Task } from '../task';
+import { CourseService } from '../course.service';
+import { Course } from '../course';
 
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent {
-  constructor(private taskService: TaskService, private fb: FormBuilder) {}
+export class AddTaskComponent implements OnInit {
+  constructor(private taskService: TaskService, private courseService: CourseService, private fb: FormBuilder) {}
+
+  course: Course[];
 
   newtask: Task = {
     task_id: this.taskService.nextID++,
@@ -26,7 +30,7 @@ export class AddTaskComponent {
     course: ['', Validators.required],
     due_date: [new Date, Validators.required],
     details: [''],
-    is_pinned: []
+    is_pinned: [Boolean, Validators.required]
   });
 
   updateValues() {
@@ -34,7 +38,7 @@ export class AddTaskComponent {
     this.newtask.course = this.taskForm.value.course!;
     this.newtask.due_date = this.taskForm.value.due_date!;
     this.newtask.details = this.taskForm.value.details!;
-    this.newtask.is_pinned = this.taskForm.value.is_pinned!;
+    this.newtask.is_pinned = Boolean(this.taskForm.value.is_pinned!);
   }
 
   addTask() {
@@ -43,6 +47,18 @@ export class AddTaskComponent {
     })
   }
 
+  getCourses() {
+    this.courseService.getCourses().subscribe(data => {
+      this.course = data;
+    })
+  }
+
   onSubmit() {
+    this.updateValues();
+    this.addTask();
+  }
+
+  ngOnInit(): void {
+    this.getCourses();
   }
 }

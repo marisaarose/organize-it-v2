@@ -21,6 +21,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatIconModule} from '@angular/material/icon';
+import { AddInstructorComponent } from './add-instructor/add-instructor.component';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { CourseListComponent } from './course-list/course-list.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import {MatIconModule} from '@angular/material/icon';
     ScheduleComponent,
     DashboardComponent,
     TaskListComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    AddInstructorComponent,
+    AddCourseComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,
