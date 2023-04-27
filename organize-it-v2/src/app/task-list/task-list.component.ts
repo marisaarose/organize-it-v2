@@ -12,6 +12,9 @@ export class TaskListComponent implements OnInit {
   constructor(private taskService: TaskService) {}
   tasks: Task[] = [];
 
+  newDialog() {
+    this.taskService.newDialog();
+  }
   ngOnInit(): void {
 
   }

@@ -24,12 +24,25 @@ export class AddTaskComponent {
   taskForm = this.fb.group({
     title: ['', Validators.required],
     course: ['', Validators.required],
-    due_date: ['', Validators.required],
+    due_date: [new Date, Validators.required],
     details: [''],
-    is_pinned: ['']
+    is_pinned: []
   });
 
-  onSubmit() {
+  updateValues() {
+    this.newtask.title = this.taskForm.value.title!;
+    this.newtask.course = this.taskForm.value.course!;
+    this.newtask.due_date = this.taskForm.value.due_date!;
+    this.newtask.details = this.taskForm.value.details!;
+    this.newtask.is_pinned = this.taskForm.value.is_pinned!;
+  }
 
+  addTask() {
+    this.taskService.addTask(this.newtask).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+  onSubmit() {
   }
 }

@@ -1,53 +1,39 @@
-<mat-card class="contact-card">
-    <mat-card-header>
-        <mat-card-title>Add New Contact</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
+<h2 mat-dialog-title>New Task</h2>
+<mat-dialog-content class="add-task">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
 
-            <table width="100%" cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field appearance="fill" class="taskinput">
-                            <mat-label>Title</mat-label>
-                            <input matInput id="title" type="text" formControlName="title" required>
-                            <mat-icon matSuffix>perm_contact_calendar</mat-icon>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field appearance="fill" class="taskinput">
-                            <mat-label>Course</mat-label>
-                            <select id="course" formControlName="course" required></select>
-                            <mat-icon matSuffix>perm_contact_calendar</mat-icon>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field appearance="fill" class="taskinput">
-                            <mat-label>Due Date</mat-label>
-                            <input matInput id="due_date" type="date" formControlName="due_date" required>
-                            <mat-icon matSuffix>phone</mat-icon>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-form-field appearance="fill" class="taskinput">
-                            <mat-label>Details</mat-label>
-                            <textarea matInput id="details" type="textarea" formControlName="details" required></textarea>
-                            <mat-icon matSuffix>email</mat-icon>
-                        </mat-form-field>
-                    </td>
-                    <td>
-                        <mat-radio-group aria-label="Pin Task?">
-                            <mat-radio-button value="1" id="is_pinned" formControlName="is_pinned">Yes</mat-radio-button>
-                            <mat-radio-button value="2" id="not_pinned">No</mat-radio-button>
-                        </mat-radio-group>                          
-                    </td>
-                </tr>
-            </table>
-            <mat-divider></mat-divider>
-            <button mat-stroked-button color="primary" type="submit" [disabled]="!taskForm.valid">Submit</button>
-            <button mat-stroked-button color="primary" type="submit">Cancel</button>
-        </form>
-    </mat-card-content>
-</mat-card>
+        <mat-form-field appearance="fill" class="taskinput">
+            <mat-label>Title</mat-label>
+            <input matInput id="title" type="text" formControlName="title" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Course</mat-label>
+            <mat-select id="course" formControlName="course" required>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="taskinput">
+            <mat-label>Due Date</mat-label>
+            <input matInput id="due_date" type="date" formControlName="due_date" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="taskinput">
+            <mat-label>Details</mat-label>
+            <textarea matInput id="details" type="textarea" formControlName="details" required></textarea>
+        </mat-form-field>
+
+        <mat-radio-group>
+            <mat-label>Pin Task?</mat-label>
+            <mat-radio-button value="1" id="is_pinned" formControlName="is_pinned">Yes</mat-radio-button>
+            <mat-radio-button value="2" id="not_pinned">No</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-divider></mat-divider>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!taskForm.valid"
+            [mat-dialog-close]="true">Submit</button>
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+    </form>
+</mat-dialog-content>

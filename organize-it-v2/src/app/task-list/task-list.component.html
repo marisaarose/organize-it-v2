@@ -2,7 +2,7 @@
     <nav>
 
     </nav>
-
+    <button mat-button (click)="newDialog()">Create New Task</button>
         <div class="tasks" *ngFor="let t of tasks">
             <app-tasks [task]="t"></app-tasks>
         </div>

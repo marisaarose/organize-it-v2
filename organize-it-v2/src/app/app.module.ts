@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select'; 
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -44,7 +46,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatRadioModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
