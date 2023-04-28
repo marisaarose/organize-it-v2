@@ -12,6 +12,7 @@ export class TaskService {
 
   constructor(private http: HttpClient, public dialog: MatDialog) { }
   nextID: number = 0;
+  tasks: Task[];
 
   newDialog() {
     const dialogRef = this.dialog.open(AddTaskComponent);
@@ -31,7 +32,24 @@ export class TaskService {
       for(const key in responseData){
         taskArray.push(responseData[key]);
       }
+      this.nextID = taskArray.length;
+      this.tasks = taskArray;
       return taskArray;
     }));
   }
+
+  getTask(id: number) {
+    return this.tasks[id];
+  }
+
+  getPinned(): Task[] {
+    var pinnedTasks: Task[] = [];
+    for(var i = 0; i < this.tasks.length; i++){
+      if(this.tasks[i].is_pinned == true){
+        pinnedTasks.push(this.tasks[i]);
+      }
+    }
+    return pinnedTasks;
+  }
+
 }

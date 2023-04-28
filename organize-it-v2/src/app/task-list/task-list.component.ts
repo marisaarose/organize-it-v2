@@ -16,7 +16,7 @@ export class TaskListComponent implements OnInit {
     this.taskService.newDialog();
   }
 
-  fetchData() {
+  getTasks() {
     this.taskService.getTasks().subscribe(data => {
       this.tasks = data;
       console.log(data);
@@ -24,6 +24,6 @@ export class TaskListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchData();
+    this.getTasks();
   }
 }

@@ -26,10 +26,10 @@
             <textarea matInput id="details" type="textarea" formControlName="details"></textarea>
         </mat-form-field>
 
-        <mat-radio-group formControlName="is_pinned" required>
+        <mat-radio-group formControlName="is_pinned" name="is_pinned" required>
             <mat-label>Pin Task?</mat-label>
-            <mat-radio-button value="true" id="is_pinned">Yes</mat-radio-button>
-            <mat-radio-button value="false" id="is_pinned">No</mat-radio-button>
+            <mat-radio-button value="true" [value]="true">Yes</mat-radio-button>
+            <mat-radio-button value="false" [value]="false" checked>No</mat-radio-button>
         </mat-radio-group>
 
         <mat-divider></mat-divider>

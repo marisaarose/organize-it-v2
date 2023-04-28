@@ -3,7 +3,6 @@ import { Instructor } from './instructor';
 import { Course } from './course';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-import { Component } from '@angular/core';
 import { AddInstructorComponent } from './add-instructor/add-instructor.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { map } from 'rxjs';
@@ -34,6 +33,7 @@ export class CourseService {
       for(const key in responseData){
         courseArray.push(responseData[key]);
       }
+      this.nextCourseID = courseArray.length;
       return courseArray;
     }));
   }
@@ -45,6 +45,7 @@ export class CourseService {
       for(const key in responseData){
         instructorArray.push(responseData[key]);
       }
+      this.nextInstID = instructorArray.length;
       return instructorArray;
     }));
   }

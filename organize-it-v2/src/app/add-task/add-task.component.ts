@@ -30,7 +30,7 @@ export class AddTaskComponent implements OnInit {
     course: ['', Validators.required],
     due_date: [new Date, Validators.required],
     details: [''],
-    is_pinned: [Boolean, Validators.required]
+    is_pinned: [false, Validators.required]
   });
 
   updateValues() {

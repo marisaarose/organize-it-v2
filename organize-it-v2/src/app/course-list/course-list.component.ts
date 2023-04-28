@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
 import { CourseService } from '../course.service';
+import { Instructor } from '../instructor';
 
 @Component({
   selector: 'app-course-list',
@@ -10,6 +11,7 @@ import { CourseService } from '../course.service';
 export class CourseListComponent implements OnInit {
   constructor(private courseService: CourseService) {}
   courses: Course[] = [];
+  instructors: Instructor[];
 
   newDialog(type: string) {
     if(type == 'course'){
@@ -19,14 +21,21 @@ export class CourseListComponent implements OnInit {
     }
   }
 
-  fetchData() {
+  getCourses() {
     this.courseService.getCourses().subscribe(data => {
       this.courses = data;
     })
   }
 
+  getInstructors() {
+    this.courseService.getInstructors().subscribe(data => {
+      this.instructors = data;
+    })
+  }
+
   ngOnInit(): void {
-    this.fetchData();
+    this.getCourses();
+    this.getInstructors();
   }
 }
 
