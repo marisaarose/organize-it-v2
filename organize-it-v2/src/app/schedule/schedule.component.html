@@ -1,1 +1,23 @@
-<p>schedule works!</p>
+<h2>Days of The Week</h2>
+<ul class="days">
+  <li *ngFor="let day of days">
+    <button
+      [class.selected]="day === selectedDay"
+      type="button"
+      (click)="onSelect(day)"
+    >
+      <span class="badge" {{schedule.id}}></span>
+      <span class="day">{{ schedule.day }}</span>
+    </button>
+  </li>
+</ul>
+<div *ngIf="selectedDay">
+  <h3>{{ selectedDay.day | uppercase }} Details</h3>
+  <div>id: {{ selectedDay.id }}></div>
+  <div>
+    <label for="day">Week Day:</label>
+    <input id="day" [(ngModel)]="schedule.day" placeholder="day" />
+  </div>
+</div>
+
+<app-schedule></app-schedule>
