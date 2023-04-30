@@ -6,6 +6,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     TasksComponent,
     ScheduleComponent,
     DashboardComponent,
+    ScheduleDetailComponent,
   ],
   imports: [BrowserModule, FormsModule],
   providers: [],

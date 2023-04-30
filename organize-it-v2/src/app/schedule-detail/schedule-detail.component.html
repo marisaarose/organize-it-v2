@@ -1,0 +1,8 @@
+<div *ngIf="day">
+  <h3>{{ day.day | uppercase }} Details</h3>
+  <div>id: {{ day.id }}></div>
+  <div>
+    <label for="day">Week Day:</label>
+    <input id="day" [(ngModel)]="day.day" placeholder="day" />
+  </div>
+</div>

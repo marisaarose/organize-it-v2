@@ -11,13 +11,5 @@
     </button>
   </li>
 </ul>
-<div *ngIf="selectedDay">
-  <h3>{{ selectedDay.day | uppercase }} Details</h3>
-  <div>id: {{ selectedDay.id }}></div>
-  <div>
-    <label for="day">Week Day:</label>
-    <input id="day" [(ngModel)]="schedule.day" placeholder="day" />
-  </div>
-</div>
 
-<app-schedule></app-schedule>
+<app-schedule-detail [day]="selectedDay"></app-schedule-detail>
