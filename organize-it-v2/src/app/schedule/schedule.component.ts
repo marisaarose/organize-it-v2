@@ -20,4 +20,10 @@ export class ScheduleComponent {
     id: 1,
     day: 'Wednesday',
   };
+  getDays(): void {
+    this.scheduleService.getDays().subscribe((days) => (this.days = days));
+  }
+  ngOnInit(): void {
+    this.getDays();
+  }
 }

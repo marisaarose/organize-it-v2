@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Schedule } from './schedule';
 import { Days } from './mock-days';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,7 +9,8 @@ import { Days } from './mock-days';
 export class ScheduleService {
   constructor() {}
 
-  getDays(): Schedule[] {
-    return Days;
+  getDays(): Observable<Schedule[]> {
+    const days = of(Days);
+    return days;
   }
 }
