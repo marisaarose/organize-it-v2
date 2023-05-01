@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Schedule } from './schedule';
+import { Days } from './mock-days';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScheduleService {
+  constructor() {}
 
-  constructor() { }
+  getDays(): Schedule[] {
+    return Days;
+  }
 }
