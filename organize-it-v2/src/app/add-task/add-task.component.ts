@@ -43,7 +43,8 @@ export class AddTaskComponent implements OnInit {
 
   addTask() {
     this.taskService.addTask(this.newtask).subscribe(data => {
-      console.log(data);
+      // Need to find some way to get the key generated from this added task
+      this.taskService.task_keys[this.newtask.task_id] = data.toString;
     })
   }
 

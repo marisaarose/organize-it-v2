@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Task } from '../task';
 import { CourseService } from '../course.service';
 import { Course } from '../course';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 @Component({
@@ -13,12 +13,12 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./edit-task.component.css']
 })
 export class EditTaskComponent implements OnInit {
-  constructor(private taskService: TaskService, private courseService: CourseService, private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) task: Task) {}
-
+  constructor(@Inject(MAT_DIALOG_DATA) private data: Task, private taskService: TaskService, private courseService: CourseService, private fb: FormBuilder) {}
+  
   course: Course[];
 
   updtask: Task = {
-    task_id: this.taskService.nextID++,
+    task_id: this.data.task_id,
     title: '',
     course: '',
     due_date: new Date,
@@ -27,26 +27,28 @@ export class EditTaskComponent implements OnInit {
     is_pinned: false
   };
 
-  taskForm = this.fb.group({
-    title: ['', Validators.required],
-    course: ['', Validators.required],
-    due_date: [new Date, Validators.required],
-    details: [''],
-    is_pinned: [false, Validators.required]
+  editTForm = this.fb.group({
+    title: [this.data.title, Validators.required],
+    course: [this.data.course, Validators.required],
+    due_date: [this.data.due_date, Validators.required],
+    details: [this.data.details],
+    is_pinned: [this.data.is_pinned, Validators.required]
   });
 
   updateValues() {
-    this.updtask.title = this.taskForm.value.title!;
-    this.updtask.course = this.taskForm.value.course!;
-    this.updtask.due_date = this.taskForm.value.due_date!;
-    this.updtask.details = this.taskForm.value.details!;
-    this.updtask.is_pinned = Boolean(this.taskForm.value.is_pinned!);
+    this.updtask.title = this.editTForm.value.title!;
+    this.updtask.course = this.editTForm.value.course!;
+    this.updtask.due_date = this.editTForm.value.due_date!;
+    this.updtask.details = this.editTForm.value.details!;
+    this.updtask.is_pinned = Boolean(this.editTForm.value.is_pinned!);
   }
 
   editTask() {
-    this.taskService.addTask(this.updtask).subscribe(data => {
-      console.log(data);
-    })
+    this.taskService.editTask(this.updtask.task_id, this.updtask).subscribe(data => {});
+  }
+
+  deleteTask(){
+    this.taskService.deleteTask(Number(this.data.task_id)).subscribe();
   }
 
   getCourses() {

@@ -25,18 +25,17 @@ export class TasksComponent implements OnInit {
     var due = new Date(this.task.due_date);
     var diff = Math.abs(today.getTime() - due.getTime());
     var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+    function daysBetween(today: Date, due: Date) {
+      return Math.round(Math.abs((+today) - (+due))/8.64e7);
+    }
     if(today.getMonth()+1 > due.getMonth()+1 && today.getFullYear() == due.getFullYear()){
       return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - Overdue"; 
     }
-    return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - " + diffDays + " days left";
+    return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - " + daysBetween(today, due) + " days left";
   }
   
   editTask(){
     this.taskService.newDialogEdit(this.task);
-  }
-
-  deleteTask(){
-    
   }
 
   ngOnInit(): void {

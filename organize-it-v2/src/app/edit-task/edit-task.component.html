@@ -1,6 +1,6 @@
-<h2 mat-dialog-title>New Task</h2>
-<mat-dialog-content class="add-task">
-    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" id="taskForm">
+<h2 mat-dialog-title>Edit Task</h2>
+<mat-dialog-content class="edit-task">
+    <form [formGroup]="editTForm" (ngSubmit)="onSubmit()" id="editTForm">
 
         <mat-form-field appearance="fill" class="taskinput">
             <mat-label>Title</mat-label>
@@ -29,12 +29,13 @@
         <mat-radio-group formControlName="is_pinned" name="is_pinned" required>
             <mat-label>Pin Task?</mat-label>
             <mat-radio-button value="true" [value]="true">Yes</mat-radio-button>
-            <mat-radio-button value="false" [value]="false" checked>No</mat-radio-button>
+            <mat-radio-button value="false" [value]="false">No</mat-radio-button>
         </mat-radio-group>
 
         <mat-divider></mat-divider>
-        <button mat-stroked-button color="primary" type="submit" [disabled]="!taskForm.valid"
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!editTForm.valid"
             [mat-dialog-close]="true">Submit</button>
         <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
     </form>
+    <button mat-stroked-button color="warn" id="delete" (click)="deleteTask()" [mat-dialog-close]="true">Delete Task</button>
 </mat-dialog-content>

@@ -36,27 +36,22 @@ export class TaskService {
     return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json', newTask);
   }
 
-  getEditInfo(id: any){
-    if(this.tasks[id]){
-      return this.tasks[id];
-    } else {
-      return "No result.";
-    }
+  editTask(id: any, task: Task){
+    return this.http.put('https://organize-it-140cc-default-rtdb.firebaseio.com/tasks/' + this.task_keys[id] +'.json', task);
   }
 
-  editTask(id: any, task: Task){
-    this.http.patch<Task>('https://organize-it-140cc-default-rtdb.firebaseio.com/tasks/' + this.task_keys[id] +'.json', task);
+  deleteTask(id: number){
+    return this.http.delete('https://organize-it-140cc-default-rtdb.firebaseio.com/tasks/' + this.task_keys[id] +'.json');
   }
 
   getTasks() {
     return this.http.get<Task[]>('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json')
     .pipe(map(responseData => {
       const taskArray: Task[]= [];
+      var i = 0;
       for(const key in responseData){
         taskArray.push(responseData[key]);
-        this.task_keys.push(key);
       }
-      console.log(this.task_keys);
       this.nextID = taskArray.length;
       this.tasks = taskArray;
       return taskArray;
