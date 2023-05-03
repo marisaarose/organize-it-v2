@@ -17,6 +17,7 @@ export class CourseService {
   nextInstID: number = 0;
   nextCourseID: number = 0;
   instructorList: Instructor[];
+  coursesList: Course[] = [];
 
   addInstructor(newInstructor: Instructor){
     return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'instructors.json', newInstructor);
@@ -34,8 +35,13 @@ export class CourseService {
         courseArray.push(responseData[key]);
       }
       this.nextCourseID = courseArray.length;
+      this.coursesList = courseArray;
       return courseArray;
     }));
+  }
+
+  getCourse(id: any){
+    return this.coursesList[id];
   }
 
   getInstructors() {

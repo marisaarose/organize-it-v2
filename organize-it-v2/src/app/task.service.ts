@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { map } from 'rxjs';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,19 @@ export class TaskService {
   constructor(private http: HttpClient, public dialog: MatDialog) { }
   nextID: number = 0;
   tasks: Task[];
+  task_keys: any[] = [];
 
-  newDialog() {
+  newDialogAdd() {
     const dialogRef = this.dialog.open(AddTaskComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  newDialogEdit(task: Task) {
+    const dialogRef = this.dialog.open(EditTaskComponent, {
+      data: task,
+    });
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
@@ -25,13 +36,27 @@ export class TaskService {
     return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json', newTask);
   }
 
+  getEditInfo(id: any){
+    if(this.tasks[id]){
+      return this.tasks[id];
+    } else {
+      return "No result.";
+    }
+  }
+
+  editTask(id: any, task: Task){
+    this.http.patch<Task>('https://organize-it-140cc-default-rtdb.firebaseio.com/tasks/' + this.task_keys[id] +'.json', task);
+  }
+
   getTasks() {
     return this.http.get<Task[]>('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'tasks.json')
     .pipe(map(responseData => {
       const taskArray: Task[]= [];
       for(const key in responseData){
         taskArray.push(responseData[key]);
+        this.task_keys.push(key);
       }
+      console.log(this.task_keys);
       this.nextID = taskArray.length;
       this.tasks = taskArray;
       return taskArray;
@@ -42,14 +67,19 @@ export class TaskService {
     return this.tasks[id];
   }
 
-  getPinned(): Task[] {
+  getActiveTasks(tasks: Task[]): Task[][] {
     var pinnedTasks: Task[] = [];
-    for(var i = 0; i < this.tasks.length; i++){
-      if(this.tasks[i].is_pinned == true){
-        pinnedTasks.push(this.tasks[i]);
+    var notPinned: Task[] = [];
+    var result: Task[][] = [];
+    for(var i = 0; i < tasks.length; i++){
+      if(tasks[i].is_pinned == true && tasks[i].is_complete == false){
+        pinnedTasks.push(tasks[i]);
+      } else if(tasks[i].is_pinned == false && tasks[i].is_complete == false){
+        notPinned.push(tasks[i]);
       }
     }
-    return pinnedTasks;
+    result.push(pinnedTasks, notPinned);
+    return result;
   }
 
 }

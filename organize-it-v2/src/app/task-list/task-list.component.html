@@ -3,7 +3,12 @@
 
     </nav>
     <button mat-button (click)="newDialog()">Create New Task</button>
-        <div class="tasks" *ngFor="let t of tasks">
-            <app-tasks [task]="t"></app-tasks>
+        <h3>Pinned</h3>
+        <div class="tasks" *ngFor="let p of active_ptasks">
+            <app-tasks [task]="p"></app-tasks>
+        </div>
+        <h3>All</h3>
+        <div class="tasks" *ngFor="let n of active_ntasks">
+            <app-tasks [task]="n"></app-tasks>
         </div>
 </div>

@@ -1,14 +1,15 @@
-<mat-card class="task-card">
+<mat-card class="task-card clickable" (click)="editTask()">
     <mat-card-header>
       <mat-card-title>{{task.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-divider></mat-divider>
+      <div class="course-assignment">{{getCourseName()}}</div>
+        
     </mat-card-content>
     <mat-card-footer>
         <mat-card-actions>
-            <button mat-stroked-button color="primary" (click)="editTask()">Edit</button>
             <button mat-stroked-button color="primary" (click)="deleteTask()">Delete</button>
           </mat-card-actions>
+          <div class="task-due">{{getDueString()}}</div>
     </mat-card-footer>
   </mat-card>

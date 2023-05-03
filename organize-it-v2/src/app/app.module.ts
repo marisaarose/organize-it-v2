@@ -24,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { AddInstructorComponent } from './add-instructor/add-instructor.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CourseListComponent } from './course-list/course-list.component';
     AddTaskComponent,
     AddInstructorComponent,
     AddCourseComponent,
-    CourseListComponent
+    CourseListComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
