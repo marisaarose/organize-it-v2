@@ -30,8 +30,6 @@ export class TasksComponent implements OnInit {
   getDueString(){
     var today = new Date();
     var due = new Date(this.task.due_date);
-    var diff = Math.abs(today.getTime() - due.getTime());
-    var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
     function daysBetween(today: Date, due: Date) {
       return Math.round(Math.abs((+today) - (+due))/8.64e7);
     }
@@ -45,8 +43,12 @@ export class TasksComponent implements OnInit {
     this.taskService.newDialogEdit(this.task);
   }
 
+  viewTask(){
+    this.taskService.newDialogView(this.task);
+  }
+
   completeTask(){
-    
+
   }
 
   ngOnInit(): void {

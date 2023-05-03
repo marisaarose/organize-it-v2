@@ -1,7 +1,9 @@
-.task-due { text-align:right; }
+.task-due { text-align:right; font-weight:bold; font-style:italic; margin:-10px 10px 10px 0; font-size:.8em; }
 .clickable:hover { cursor:pointer; }
 .completedbox { width:30px; height:30px; border-radius:5px; background-color:#ccc; }
 .completedbox:hover { background-color:#bbb; }
 .inline-task { display:flex; gap:20px; }
 .task-card { border:1px solid black; box-shadow:none; }
-.course-assignment { color:white; border-radius:5px; border:1px solid black; padding:5px 5px 0 5px; }
+.course-assignment { color:white; border-radius:5px; border:1px solid black; padding:5px 5px 0 5px; font-size:.9em; }
+.task-card { font-family:Nunito; margin-top:10px; }
+mat-card-title { font-family:Nunito; font-weight:700; letter-spacing:0; }

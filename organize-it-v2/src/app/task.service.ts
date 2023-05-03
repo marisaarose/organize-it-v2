@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { map } from 'rxjs';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { TaskDetailsComponent } from './task-details/task-details.component';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,15 @@ export class TaskService {
 
   newDialogEdit(task: Task) {
     const dialogRef = this.dialog.open(EditTaskComponent, {
+      data: task,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  newDialogView(task: Task) {
+    const dialogRef = this.dialog.open(TaskDetailsComponent, {
       data: task,
     });
     dialogRef.afterClosed().subscribe((result) => {
