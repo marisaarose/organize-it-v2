@@ -14,10 +14,17 @@ export class TasksComponent implements OnInit {
   constructor(private taskService: TaskService, private courseService: CourseService) {}
   @Input() task: Task;
   courseName: string = "";
+  courseColor: string = "";
+
 
   getCourseName(){
     this.courseName = this.courseService.getCourse(this.task.course).name;
     return this.courseName;
+  }
+
+  getCourseColor(){
+    this.courseColor = this.courseService.getCourse(this.task.course).color;
+    return this.courseColor;
   }
 
   getDueString(){
@@ -38,6 +45,11 @@ export class TasksComponent implements OnInit {
     this.taskService.newDialogEdit(this.task);
   }
 
+  completeTask(){
+    
+  }
+
   ngOnInit(): void {
+    this.getCourseColor();
   }
 }

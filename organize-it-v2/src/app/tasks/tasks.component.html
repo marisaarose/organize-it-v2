@@ -3,12 +3,12 @@
       <mat-card-title>{{task.title}}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <div class="course-assignment">{{getCourseName()}}</div>
-        
+      <div class="inline-task">
+        <div class="completedbox" (click)="completeTask()"></div>
+        <div class="course-assignment" [style.background]="this.getCourseColor()">{{getCourseName()}}</div>
+      </div>
     </mat-card-content>
     <mat-card-footer>
-        <mat-card-actions>
-          </mat-card-actions>
           <div class="task-due">{{getDueString()}}</div>
     </mat-card-footer>
   </mat-card>

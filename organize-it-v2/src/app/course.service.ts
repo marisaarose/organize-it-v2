@@ -20,11 +20,11 @@ export class CourseService {
   coursesList: Course[] = [];
 
   addInstructor(newInstructor: Instructor){
-    return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'instructors.json', newInstructor);
+    return this.http.put('https://organize-it-140cc-default-rtdb.firebaseio.com/instructors/' + newInstructor.instructor_id + '.json', newInstructor);
   }
 
   addCourse(newCourse: Course) {
-    return this.http.post('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'courses.json', newCourse);
+    return this.http.put('https://organize-it-140cc-default-rtdb.firebaseio.com/courses/' + newCourse.course_id + '.json', newCourse);
   }
 
   getCourses() {

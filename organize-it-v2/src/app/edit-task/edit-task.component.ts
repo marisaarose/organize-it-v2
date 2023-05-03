@@ -44,7 +44,7 @@ export class EditTaskComponent implements OnInit {
   }
 
   editTask() {
-    this.taskService.editTask(this.updtask.task_id, this.updtask).subscribe(data => {});
+    this.taskService.editTask(this.updtask).subscribe();
   }
 
   deleteTask(){
