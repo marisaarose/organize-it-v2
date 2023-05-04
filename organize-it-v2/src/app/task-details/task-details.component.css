@@ -1,0 +1,14 @@
+mat-dialog-content { width:50vw; }
+h1, h3 { color:black; font-family:Nunito; margin:0; }
+.course-assignment { color:white; border-radius:5px; border:1px solid black; padding:5px 5px 0 5px; font-size:.9em; }
+.inline-task, .inline-task-header { display:flex; gap:20px; }
+.inline-task-header { justify-content: space-between; }
+.task-due { font-weight:700; font-style:italic; margin:10px; font-size:.9em; }
+.view-task { color:black; font-family:Nunito; border:1px solid black; border-radius:5px; }
+.task-details { padding:10px; }
+.edit-button, .delete-button { background-color:#4fc3f7; border:1px solid black; border-radius:5px; text-align:center; height:29px; width:35px; padding-top:6px; align-self: flex-end; }
+.delete-button { background-color:#d65953; }
+.edit-button:hover { background-color:#3bb3e8; cursor:pointer; }
+.delete-button:hover { background-color:#cb433d; cursor:pointer; }
+.bi-pencil, .bi-trash { color:rgb(255,255,255,0.7); }
+.flexbuttons { display:flex; gap: 10px; }

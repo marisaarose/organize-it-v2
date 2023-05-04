@@ -1,0 +1,10 @@
+<div class="course-list">
+    <nav>
+
+    </nav>
+    <button mat-button (click)="newDialog('course')">Create New Course</button>
+    <button mat-button (click)="newDialog('instructor')">Create New Instructor</button>
+        <div class="courses" *ngFor="let c of courses">
+            <app-courses [course]="c"></app-courses>
+        </div>
+</div>

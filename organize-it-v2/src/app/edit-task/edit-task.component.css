@@ -1,0 +1,4 @@
+mat-form-field, mat-radio-group { display:block; }
+mat-dialog-content { width:50vw; }
+button { margin:10px 10px 0 0; }
+.delete { text-align:right; }

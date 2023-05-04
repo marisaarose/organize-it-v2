@@ -1,0 +1,17 @@
+.task-due { text-align:right; font-weight:bold; font-style:italic; margin:30px 10px 0px 0; font-size:.8em; }
+.task-container { margin:20px; }
+.clickable:hover { cursor:pointer; }
+.completed-container { padding:0 10px 0 15px; }
+.completedbox, .green-completed { width:40px; height:40px; border-radius:5px; background-color:#eee; align-self: center; }
+.green-completed { background-color:#6bb576; text-align:center; }
+.green-completed:hover { background-color:#4da359; }
+.completedbox:hover { background-color:#ccc; }
+.inline-task { display:flex; gap:20px; }
+.task-card { border:1px solid black; box-shadow:none; display:flex; flex-direction: row; align-items: center; }
+.course-assignment { color:white; border-radius:5px; border:1px solid black; padding:2px 5px 2px 5px; font-size:.8em; }
+.task-card { font-family:Nunito; }
+.bi-check2 { color:rgb(255,255,255,0.7); font-size:30px; }
+.pin { margin:0 0 -10px 20px; position:relative; z-index:2; }
+.bi-pin-angle-fill { color:#d65953; }
+mat-card-title { font-family:Nunito; font-weight:700; letter-spacing:0; margin:0; }
+mat-card-content { flex:1; padding:5px 0 5px 5px; }
