@@ -63,18 +63,18 @@ export class TasksComponent implements OnInit {
   }
 
   getYearDay(date: any) {
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var days = 0;
     var leap = false;
+    var numberedMonth = date[0];
+    if(date[0].string){
+      numberedMonth = Number.parseInt(date[0]);
+    }
     if(date[2] % 4 == 0){
       leap = true;
     }
-    switch(date[1]){
-      case "01":
-        return 31;
-      case "02":
-        if(leap){
-          return 60;
-        }
-        return 59;
+    for(var i = 0; i < date[0]; i++){
+
     }
     return 0;
   }
