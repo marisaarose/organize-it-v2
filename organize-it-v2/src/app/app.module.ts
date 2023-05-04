@@ -26,6 +26,7 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { TaskDetailsComponent, DeleteDialog } from './task-details/task-details.component';
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { TaskDetailsComponent, DeleteDialog } from './task-details/task-details.
     EditTaskComponent,
     TaskDetailsComponent,
     DeleteDialog, 
-    CompleteDialog
+    CompleteDialog,
+    ScheduleDetailComponent
   ],
   imports: [
     BrowserModule,
