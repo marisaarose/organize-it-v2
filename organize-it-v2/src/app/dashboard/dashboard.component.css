@@ -1,0 +1,2 @@
+.inline-apps, .inline-titles { display:grid; grid-template-columns: 25% 50% 25%; }
+h3 { text-align:center; font-family:Nunito; }

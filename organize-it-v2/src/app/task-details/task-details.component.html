@@ -1,0 +1,16 @@
+<mat-dialog-content class="view-task" [id]="viewid">
+    <div class="inline-task-header">
+        <h1>{{task.title}}</h1>
+        <div class="flexbuttons">
+            <div class="edit-button" (click)="editTask()"><i class="bi bi-pencil"></i></div>
+        <div class="delete-button" (click)="openDialog('0ms', '0ms')" [mat-dialog-close]="true"><i class="bi bi-trash"></i></div>
+        </div>
+    </div>
+    <div class="inline-task">
+        <div class="course-assignment" [style.background]="this.getCourseColor()">{{getCourseName()}}</div>
+    </div>
+    <div class="task-due">{{getDueString()}}</div>
+    <h3>Details</h3>
+    <div class="task-details">{{this.convertDetails()}}</div>
+    <button mat-stroked-button color="basic" id="cancel" [mat-dialog-close]="true">Cancel</button>
+</mat-dialog-content>

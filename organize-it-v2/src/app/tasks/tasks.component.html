@@ -1,1 +1,20 @@
-<p>tasks works!</p>
+<div class="task-container">
+  <div class="pin" *ngIf="task.is_pinned"><i class="bi bi-pin-angle-fill"></i></div>
+  <mat-card class="task-card">
+    <div class="completed-container">
+      <div class="completedbox clickable" *ngIf="!task.is_complete" [id]="task.task_id"
+        (click)="openDialog('0ms', '0ms')"></div>
+      <div class="green-completed clickable" *ngIf="task.is_complete" [id]="task.task_id"
+        (click)="openDialog('0ms', '0ms')"><i class="bi bi-check2"></i></div>
+    </div>
+    <mat-card-content class="clickable" (click)="viewTask()">
+      <mat-card-title>{{task.title}}</mat-card-title>
+      <div class="inline-task">
+        <div class="course-assignment" [style.background]="this.getCourseColor()"><span>{{getCourseName()}}</span></div>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <div class="task-due">{{getDueString()}}</div>
+    </mat-card-footer>
+  </mat-card>
+</div>
