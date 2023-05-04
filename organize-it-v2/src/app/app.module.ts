@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CoursesComponent } from './courses/courses.component';
-import { TasksComponent } from './tasks/tasks.component';
+import { TasksComponent, CompleteDialog } from './tasks/tasks.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,8 +25,7 @@ import { AddInstructorComponent } from './add-instructor/add-instructor.componen
 import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
-import { TaskDetailsComponent } from './task-details/task-details.component';
-import { DeleteDialog } from './task-details/task-details.component';
+import { TaskDetailsComponent, DeleteDialog } from './task-details/task-details.component';
 
 
 @NgModule({
@@ -43,7 +42,8 @@ import { DeleteDialog } from './task-details/task-details.component';
     CourseListComponent,
     EditTaskComponent,
     TaskDetailsComponent,
-    DeleteDialog
+    DeleteDialog, 
+    CompleteDialog
   ],
   imports: [
     BrowserModule,

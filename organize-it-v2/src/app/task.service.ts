@@ -97,18 +97,4 @@ export class TaskService {
     return this.tasks[id];
   }
 
-  getActiveTasks(tasks: Task[]): Task[][] {
-    var pinnedTasks: Task[] = [];
-    var notPinned: Task[] = [];
-    var result: Task[][] = [];
-    for (var i = 0; i < tasks.length; i++) {
-      if (tasks[i].is_pinned == true && tasks[i].is_complete == false) {
-        pinnedTasks.push(tasks[i]);
-      } else if (tasks[i].is_pinned == false && tasks[i].is_complete == false) {
-        notPinned.push(tasks[i]);
-      }
-    }
-    result.push(pinnedTasks, notPinned);
-    return result;
-  }
 }

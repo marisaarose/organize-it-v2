@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { TaskService } from '../task.service';
-import { FormBuilder, Validators } from '@angular/forms';
 import { Task } from '../task';
 import { CourseService } from '../course.service';
 import { Course } from '../course';
@@ -17,6 +16,8 @@ export class TaskDetailsComponent implements OnInit {
   task: Task = this.data;
   courseName: string = "";
   courseColor: string = "";
+  viewid: string = "view-" + this.task.task_id;
+  counter: number = 0;
 
   getCourseName(){
     this.courseName = this.courseService.getCourse(this.task.course).name;
@@ -26,6 +27,17 @@ export class TaskDetailsComponent implements OnInit {
   getCourseColor(){
     this.courseColor = this.courseService.getCourse(this.task.course).color;
     return this.courseColor;
+  }
+
+  convertDetails() {
+    var parser = new DOMParser();
+    var currentDetails = this.task.details;
+    var element = document.querySelector("#" + this.viewid + ' .task-details')!;
+    var i = 0;
+    while(this.counter < 1){
+      element.appendChild(parser.parseFromString(currentDetails, 'text/html').body);
+      this.counter++;
+    }
   }
 
   editTask() {
@@ -47,6 +59,9 @@ export class TaskDetailsComponent implements OnInit {
     function daysBetween(today: Date, due: Date) {
       return Math.round(Math.abs((+today) - (+due))/8.64e7);
     }
+    if(this.task.is_complete){
+      return "Was due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + "/" + due.getFullYear();
+    }
     if(today.getMonth()+1 > due.getMonth()+1 && today.getFullYear() == due.getFullYear()){
       return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - Overdue"; 
     }
@@ -54,7 +69,6 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 }
 

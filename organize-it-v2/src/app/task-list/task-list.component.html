@@ -1,7 +1,7 @@
 <div class="task-list">
-    <button mat-button (click)="newDialog()">Create New Task</button>
-    <mat-tab-group animationDuration="0ms">
+    <mat-tab-group animationDuration="0ms" mat-stretch-tabs="false" mat-align-tabs="center">
         <mat-tab label="Upcoming">
+            <div class="add-task" (click)="newDialog()"><i class="bi bi-plus-circle-fill"></i></div>
             <h3><span>Pinned</span></h3>
             <div class="tasks" *ngFor="let p of active_ptasks">
                 <app-tasks [task]="p"></app-tasks>
@@ -11,7 +11,12 @@
                 <app-tasks [task]="n"></app-tasks>
             </div>
         </mat-tab>
-        <mat-tab label="Completed">Completed</mat-tab>
+        <mat-tab label="Completed">
+            <h3><span>All</span></h3>
+            <div class="tasks" *ngFor="let c of complete_tasks">
+                <app-tasks [task]="c"></app-tasks>
+            </div>
+        </mat-tab>
     </mat-tab-group>
 
 </div>
