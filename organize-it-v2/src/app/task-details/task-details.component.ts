@@ -18,6 +18,8 @@ export class TaskDetailsComponent implements OnInit {
   courseColor: string = "";
   viewid: string = "view-" + this.task.task_id;
   counter: number = 0;
+  parsedDate: any = [];
+  todayDate: any = [];
 
   getCourseName(){
     this.courseName = this.courseService.getCourse(this.task.course).name;
@@ -53,19 +55,54 @@ export class TaskDetailsComponent implements OnInit {
     });
   }
 
+  parseDate() {
+    var date_string = this.task.due_date.toString();
+    var year = date_string.split('-')[0];
+    var month = date_string.split('-')[1];
+    var day = date_string.split('-')[2];
+    var dateArray = [month, day, year];
+    this.parsedDate = dateArray;
+  }
+
   getDueString(){
+    this.parseDate();
     var today = new Date();
-    var due = new Date(this.task.due_date);
-    function daysBetween(today: Date, due: Date) {
-      return Math.round(Math.abs((+today) - (+due))/8.64e7);
+    this.todayDate.push(today.getMonth()+1, today.getDate(), today.getFullYear());
+    if(today.getMonth()+1 < 10){
+      this.todayDate[0] = "0" + (today.getMonth()+1);
     }
+    if(today.getDate() < 10){
+      this.todayDate[1] = "0" + (today.getDate());
+    }
+    var todayDay = this.getYearDay(this.todayDate) + today.getDate();
+    var dueDay = this.getYearDay(this.parsedDate) + Number.parseInt(this.parsedDate[1]);
+    var difference = dueDay - todayDay;
     if(this.task.is_complete){
-      return "Was due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + "/" + due.getFullYear();
+      return "Was due " + this.parsedDate[0] + "/" + this.parsedDate[1] + "/" + this.parsedDate[2];
     }
-    if(today.getMonth()+1 > due.getMonth()+1 && today.getFullYear() == due.getFullYear()){
-      return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - Overdue"; 
+    if(difference < 0){
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - Overdue"; 
+    } else if(difference == 0){
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - Today"; 
+    } else {
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - " + difference + " days left"; 
     }
-    return "Due " + (due.getMonth()+1) + "/" + (due.getDate()+1) + " - " + daysBetween(today, due) + " days left";
+  }
+
+  getYearDay(date: any) {
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var days = 0;
+    var numberedMonth = date[0];
+    if(date[0] == String){
+      numberedMonth = Number.parseInt(date[0]);
+    }
+    if(date[2] % 4 == 0){
+      days += 1;
+    }
+    for(var i = 0; i < numberedMonth; i++){
+      days += months[i];
+    }
+    return days;
   }
 
   ngOnInit(): void {

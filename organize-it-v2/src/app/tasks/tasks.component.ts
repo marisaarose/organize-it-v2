@@ -43,7 +43,6 @@ export class TasksComponent implements OnInit {
     if(this.task.is_complete){
       return "";
     }
-    var days = 0;
     this.parseDate();
     var today = new Date();
     this.todayDate.push(today.getMonth()+1, today.getDate(), today.getFullYear());
@@ -53,30 +52,32 @@ export class TasksComponent implements OnInit {
     if(today.getDate() < 10){
       this.todayDate[1] = "0" + (today.getDate());
     }
-    if(today.getFullYear() % 4 == 0){
-      days = 366;
+    var todayDay = this.getYearDay(this.todayDate) + today.getDate();
+    var dueDay = this.getYearDay(this.parsedDate) + Number.parseInt(this.parsedDate[1]);
+    var difference = dueDay - todayDay;
+    if(difference < 0){
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - Overdue"; 
+    } else if(difference == 0){
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - Today"; 
     } else {
-      days = 365;
+      return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - " + difference + " days left"; 
     }
-    
-    return "Due " + this.parsedDate[0] + "/" + this.parsedDate[1] + " - ";
   }
 
   getYearDay(date: any) {
     var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     var days = 0;
-    var leap = false;
     var numberedMonth = date[0];
-    if(date[0].string){
+    if(date[0] == String){
       numberedMonth = Number.parseInt(date[0]);
     }
     if(date[2] % 4 == 0){
-      leap = true;
+      days += 1;
     }
-    for(var i = 0; i < date[0]; i++){
-
+    for(var i = 0; i < numberedMonth; i++){
+      days += months[i];
     }
-    return 0;
+    return days;
   }
   
   editTask(){
