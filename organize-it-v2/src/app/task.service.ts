@@ -20,6 +20,7 @@ export class TaskService {
     const dialogRef = this.dialog.open(AddTaskComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      location.reload();
     });
   }
 
@@ -29,6 +30,7 @@ export class TaskService {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
+      location.reload();
     });
   }
 
@@ -36,13 +38,6 @@ export class TaskService {
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       data: task,
     });
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  completedDialog(task: Task) {
-    const dialogRef = this.dialog.open(AddTaskComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
@@ -82,19 +77,39 @@ export class TaskService {
       .pipe(
         map((responseData) => {
           const taskArray: Task[] = [];
-          var i = 0;
           for (const key in responseData) {
             taskArray.push(responseData[key]);
           }
-          this.nextID = taskArray.length;
+          this.nextID = (taskArray[taskArray.length-1].task_id)+1;
           this.tasks = taskArray;
           return taskArray;
         })
       );
   }
 
-  getTask(id: number) {
-    return this.tasks[id];
+  getYearDay(date: any) {
+    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var days = 0;
+    var numberedMonth = date[0];
+    if(date[0] == String){
+      numberedMonth = Number.parseInt(date[0]);
+    }
+    if(date[2] % 4 == 0){
+      days += 1;
+    }
+    for(var i = 0; i < numberedMonth; i++){
+      days += months[i];
+    }
+    return days;
+  }
+
+  parseDate(due: Date) {
+    var date_string = due.toString();
+    var year = date_string.split('-')[0];
+    var month = date_string.split('-')[1];
+    var day = date_string.split('-')[2];
+    var dateArray = [month, day, year];
+    return dateArray;
   }
 
 }

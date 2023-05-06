@@ -46,26 +46,18 @@ export class TaskDetailsComponent implements OnInit {
     this.taskService.newDialogEdit(this.data);
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(DeleteDialog, {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DeleteDialog, {
       data: this.task,
-      width: '250px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      location.reload();
     });
   }
 
-  parseDate() {
-    var date_string = this.task.due_date.toString();
-    var year = date_string.split('-')[0];
-    var month = date_string.split('-')[1];
-    var day = date_string.split('-')[2];
-    var dateArray = [month, day, year];
-    this.parsedDate = dateArray;
-  }
-
   getDueString(){
-    this.parseDate();
+    this.parsedDate = this.taskService.parseDate(this.task.due_date);
     var today = new Date();
     this.todayDate.push(today.getMonth()+1, today.getDate(), today.getFullYear());
     if(today.getMonth()+1 < 10){
@@ -74,8 +66,8 @@ export class TaskDetailsComponent implements OnInit {
     if(today.getDate() < 10){
       this.todayDate[1] = "0" + (today.getDate());
     }
-    var todayDay = this.getYearDay(this.todayDate) + today.getDate();
-    var dueDay = this.getYearDay(this.parsedDate) + Number.parseInt(this.parsedDate[1]);
+    var todayDay = this.taskService.getYearDay(this.todayDate) + today.getDate();
+    var dueDay = this.taskService.getYearDay(this.parsedDate) + Number.parseInt(this.parsedDate[1]);
     var difference = dueDay - todayDay;
     if(this.task.is_complete){
       return "Was due " + this.parsedDate[0] + "/" + this.parsedDate[1] + "/" + this.parsedDate[2];
@@ -89,21 +81,6 @@ export class TaskDetailsComponent implements OnInit {
     }
   }
 
-  getYearDay(date: any) {
-    var months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    var days = 0;
-    var numberedMonth = date[0];
-    if(date[0] == String){
-      numberedMonth = Number.parseInt(date[0]);
-    }
-    if(date[2] % 4 == 0){
-      days += 1;
-    }
-    for(var i = 0; i < numberedMonth; i++){
-      days += months[i];
-    }
-    return days;
-  }
 
   ngOnInit(): void {
   }
