@@ -1,15 +1,20 @@
-<h2>Days of The Week</h2>
-<ul class="days">
-  <li *ngFor="let day of days">
-    <button
-      [class.selected]="day === selectedDay"
-      type="button"
-      (click)="onSelect(day)"
-    >
-      <span class="badge" {{schedule.id}}></span>
-      <span class="day">{{ schedule.day }}</span>
-    </button>
-  </li>
-</ul>
 
-<app-schedule-detail [day]="selectedDay"></app-schedule-detail>
+
+<div class="week-days">
+  <div class="sch-day" onclick="openDay(this, currentDay)">{{this.getDayLetter(currentDay)}}</div>
+  <div *ngFor="let d of futureDays">
+    <div class="sch-day" onclick="openDay(this, d)" [style.--background-color]="this.colorDays()">{{this.getDayLetter(d)}}</div>
+  </div>
+</div>
+
+<div class="day-container">
+  <div class="day-heading">
+    <div class="add-task" (click)="newDialog()"><i class="bi bi-plus-circle-fill"></i></div>
+    <div class="day-d">
+      <div class="weekday">{{weekday}}</div>
+      <div class="fulldate">{{month}} {{selectedDate.getDate()}}</div>
+    </div>
+  </div>
+  
+</div>
+

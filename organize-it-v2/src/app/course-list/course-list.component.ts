@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../course';
 import { CourseService } from '../course.service';
 import { Instructor } from '../instructor';
+import { ScheduleService } from '../schedule.service';
 
 @Component({
   selector: 'app-course-list',
@@ -9,7 +10,7 @@ import { Instructor } from '../instructor';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit {
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService, private scheduleService: ScheduleService) {}
   courses: Course[] = [];
   instructors: Instructor[];
 
@@ -18,6 +19,8 @@ export class CourseListComponent implements OnInit {
       this.courseService.newCoursesDialog();
     } else if(type == 'instructor'){
       this.courseService.newInstructorsDialog();
+    } else if(type == 'meeting'){
+      this.scheduleService.newMeetingDialog();
     }
   }
 

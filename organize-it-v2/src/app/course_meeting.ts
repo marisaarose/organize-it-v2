@@ -1,10 +1,10 @@
-import { WeekDay } from "@angular/common";
+import { Time } from "@angular/common";
 
 export interface Course_Meeting {
     meeting_id: number;
-    course_id: number;
+    course: string;
     location: string;
-    day: WeekDay;
-    start_time: number;
-    end_time: number;
+    day: string;
+    start_time: Time;
+    end_time: Time;
 }
