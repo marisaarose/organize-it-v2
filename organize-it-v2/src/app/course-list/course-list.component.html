@@ -1,8 +1,5 @@
 <div class="course-list">
-    <nav>
-
-    </nav>
-    <button mat-button (click)="newDialog('course')">Create New Course</button>
+    <div class="add-course" (click)="newDialog('course')"><i class="bi bi-plus-circle-fill"></i></div>
     <button mat-button (click)="newDialog('instructor')">Create New Instructor</button>
     <button mat-button (click)="newDialog('meeting')">Create New Meeting</button>
         <div class="courses" *ngFor="let c of courses">

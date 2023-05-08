@@ -30,6 +30,7 @@ import { ScheduleDetailComponent, DeleteEDialog } from './schedule-detail/schedu
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddCourseMeetingComponent } from './add-course-meeting/add-course-meeting.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { EditEventComponent } from './edit-event/edit-event.component';
     AddEventComponent,
     AddCourseMeetingComponent,
     EditEventComponent,
-    DeleteEDialog
+    DeleteEDialog,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

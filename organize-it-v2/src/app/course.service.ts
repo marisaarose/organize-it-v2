@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddInstructorComponent } from './add-instructor/add-instructor.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { map } from 'rxjs';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +72,15 @@ export class CourseService {
   newInstructorsDialog() {
     const dialogRef = this.dialog.open(AddInstructorComponent);
     dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  newDialogView(course: Course) {
+    const dialogRef = this.dialog.open(CourseDetailsComponent, {
+      data: course,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
   }

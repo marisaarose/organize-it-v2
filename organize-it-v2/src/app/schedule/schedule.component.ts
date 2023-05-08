@@ -11,7 +11,6 @@ import { Time } from '@angular/common';
   styleUrls: ['./schedule.component.css'],
 })
 export class ScheduleComponent {
-  days: Schedule[] = [];
   currentDay: number = 0;
   futureDays: number[] = [];
   selectedDay: number = this.currentDay;
