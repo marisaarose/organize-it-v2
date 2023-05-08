@@ -8,6 +8,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEventComponent } from './add-event/add-event.component';
 import { Course_Meeting } from './course_meeting';
 import { AddCourseMeetingComponent } from './add-course-meeting/add-course-meeting.component';
+import { EditEventComponent } from './edit-event/edit-event.component';
+import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
 
 @Injectable({
   providedIn: 'root',
@@ -40,12 +42,48 @@ export class ScheduleService {
     });
   }
 
+  newDialogEdit(event: Event) {
+    const dialogRef = this.dialog.open(EditEventComponent, {
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      //location.reload();
+    });
+  }
+
+  newDialogView(event: Event) {
+    const dialogRef = this.dialog.open(ScheduleDetailComponent, {
+      data: event,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   addEvent(newEvent: Event) {
     return this.http.put(
       'https://organize-it-140cc-default-rtdb.firebaseio.com/events/' +
         newEvent.event_id +
         '.json',
       newEvent
+    );
+  }
+
+  editEvent(event: Event) {
+    return this.http.put(
+      'https://organize-it-140cc-default-rtdb.firebaseio.com/events/' +
+        event.event_id +
+        '.json',
+      event
+    );
+  }
+
+  deleteEvent(id: number) {
+    return this.http.delete(
+      'https://organize-it-140cc-default-rtdb.firebaseio.com/events/' +
+        id +
+        '.json'
     );
   }
 

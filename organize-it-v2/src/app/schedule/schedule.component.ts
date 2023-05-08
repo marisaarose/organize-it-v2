@@ -72,6 +72,7 @@ export class ScheduleComponent {
   getVariables() {
     var today = new Date();
     this.currentDay = today.getDay();
+    this.selectedDay = today.getDay();
     var temp = today.getDay() + 1;
     for (var i = 0; i < 6; i++) {
       if (temp == 6) {
@@ -123,6 +124,10 @@ export class ScheduleComponent {
     this.scheduleService.newDialogAdd();
   }
 
+  viewEvent(event: Event){
+    this.scheduleService.newDialogView(event);
+  }
+
   openDay(day: number) {
     this.day_meetings = [];
     this.selectedDay = day;
@@ -133,7 +138,6 @@ export class ScheduleComponent {
     this.month = this.months[today.getMonth()];
     this.getMeetings();
     this.getEvents();
-    this.sortMeetings(this.day_meetings)
   }
 
   getMeetings() {
@@ -174,17 +178,24 @@ export class ScheduleComponent {
     }
   }
 
-  sortMeetings(meetings: Course_Meeting[]) {
-    meetings.sort(function (a, b) {
-      var c = a.start_time;
-      var d = b.start_time;
-      return c.hours - d.hours;
-    });
+  getTimeString(event: Event){
+    var start = '' + event.start_time + '';
+    var end = '' + event.end_time + '';
+    var starthour = Number.parseInt(start.split(':')[0]);
+    var endhour = Number.parseInt(end.split(':')[0]);
+    if(Number.parseInt(start.split(':')[0]) < 12){
+    } else {
+      starthour = Number.parseInt(start.split(':')[0]) % 12;
+    }
+    if(Number.parseInt(end.split(':')[0]) < 12){
+    } else {
+      endhour = Number.parseInt(end.split(':')[0]) % 12;
+    }
+    return [starthour + ":" + start.split(':')[1] + " ", endhour + ":" + end.split(':')[1] + " "];
   }
 
   ngOnInit(): void {
     this.getVariables();
-    this.getMeetings();
-    this.getEvents();
+    this.openDay(this.selectedDay);
   }
 }

@@ -17,6 +17,7 @@ h3 { margin:10px 20px 0 20px; }
 
 .meetings-list { display: grid; grid-template-columns: 30px auto; }
 .meeting { margin:5px 5px 5px 30px; border-radius:5px; border:1px solid black; color:white; }
+.meeting:hover { cursor:pointer; }
 .m-name { font-weight:700; padding:10px; }
 .m-location, .m-prof { font-size:.8em; padding:0 20px 0 20px; }
 .m-prof { padding-bottom:10px; }
