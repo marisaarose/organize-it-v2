@@ -29,8 +29,8 @@ export class AddCourseMeetingComponent {
     course: ['', Validators.required],
     location: [''],
     day: ['', Validators.required],
-    start_time: [{hours: 0, minutes:0}],
-    end_time: [{hours: 0, minutes:0}]
+    start_time: [{hours: 0, minutes:0}, Validators.required],
+    end_time: [{hours: 0, minutes:0}, Validators.required]
   });
 
   updateValues() {

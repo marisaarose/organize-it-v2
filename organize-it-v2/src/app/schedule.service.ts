@@ -17,6 +17,8 @@ export class ScheduleService {
   nextID: number = 0;
   nextEvID: number = 0;
   nextCMID: number = 0;
+  meetings: Course_Meeting[];
+  events: Event[];
 
   getDays(): Observable<Schedule[]> {
     const days = of(Days);
@@ -54,5 +56,41 @@ export class ScheduleService {
         '.json',
       newMeeting
     );
+  }
+
+  getMeetings() {
+    return this.http
+      .get<Course_Meeting[]>(
+        'https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'course_meetings.json'
+      )
+      .pipe(
+        map((responseData) => {
+          const meetingsArray: Course_Meeting[] = [];
+          for (const key in responseData) {
+            meetingsArray.push(responseData[key]);
+          }
+          this.nextCMID = (meetingsArray[meetingsArray.length-1].meeting_id)+1;
+          this.meetings = meetingsArray;
+          return meetingsArray;
+        })
+      );
+  }
+
+  getEvents() {
+    return this.http
+      .get<Event[]>(
+        'https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'events.json'
+      )
+      .pipe(
+        map((responseData) => {
+          const eventsArray: Event[] = [];
+          for (const key in responseData) {
+            eventsArray.push(responseData[key]);
+          }
+          this.nextEvID = (eventsArray[eventsArray.length-1].event_id)+1;
+          this.events = eventsArray;
+          return eventsArray;
+        })
+      );
   }
 }

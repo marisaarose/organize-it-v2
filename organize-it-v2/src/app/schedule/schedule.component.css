@@ -7,9 +7,20 @@ h3 { margin:10px 20px 0 20px; }
 .add-task:hover { cursor: pointer; }
 
 .week-days { display:flex; gap:10px; justify-content: center; }
-.sch-day { width:30px; height:30px; border-radius:5px; line-height: 30px; text-align:center; border:1px solid black; font-family:Nunito; color:white; font-weight:700;  }
-.day-container { background-color:#f1f1f1; padding:5px; border-radius: 5px; border:1px solid black; margin:15px 10px 0 10px; }
+.sch-day { width:30px; height:30px; border-radius:5px; line-height: 30px; text-align:center; border:1px solid black; font-family:Nunito; color:white; font-weight:700; }
+.sch-day:hover { cursor:pointer; }
+.day-container { height:calc(80vh - 47px); font-family:Nunito; background-color:#f1f1f1; padding:5px; border-radius: 5px; border:1px solid black; margin:15px 10px 0 10px; }
 .day-heading { display:flex; justify-content: space-between; }
-.day-d .weekday { font-family:Nunito; font-size:.9em; text-align:right; padding-right:5px; margin-bottom:-5px; }
-.day-d .fulldate { font-family:Nunito; font-size:2em; text-align:right; font-weight:700; text-transform: uppercase; }
+.day-d .weekday { font-size:.9em; text-align:right; padding-right:5px; margin-bottom:-5px; }
+.day-d .fulldate { font-size:2em; text-align:right; font-weight:700; text-transform: uppercase; }
 .day-d { padding-right:10px; }
+
+.meetings-list { display: grid; grid-template-columns: 30px auto; }
+.meeting { margin:5px 5px 5px 30px; border-radius:5px; border:1px solid black; color:white; }
+.m-name { font-weight:700; padding:10px; }
+.m-location, .m-prof { font-size:.8em; padding:0 20px 0 20px; }
+.m-prof { padding-bottom:10px; }
+.times { padding:0 5px; }
+.times .start, .times .end { font-size:0.8em; }
+.times .start { font-weight:700; padding-bottom:10px; }
+.meeting.event { background-color:#64627a; }

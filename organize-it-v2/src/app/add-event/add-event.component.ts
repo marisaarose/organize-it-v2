@@ -11,8 +11,6 @@ import { Event } from '../event';
 export class AddEventComponent {
   constructor(private scheduleService: ScheduleService, private fb: FormBuilder) {}
 
-  event: Event[];
-
   newevent: Event = {
     event_id: this.scheduleService.nextEvID++,
     title: '',

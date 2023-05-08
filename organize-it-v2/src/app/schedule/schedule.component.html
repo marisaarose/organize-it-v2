@@ -1,9 +1,8 @@
-
-
 <div class="week-days">
-  <div class="sch-day" onclick="openDay(this, currentDay)">{{this.getDayLetter(currentDay)}}</div>
+  <div class="sch-day" (click)="this.openDay(currentDay)">{{this.getDayLetter(currentDay)}}</div>
   <div *ngFor="let d of futureDays">
-    <div class="sch-day" onclick="openDay(this, d)" [style.--background-color]="this.colorDays()">{{this.getDayLetter(d)}}</div>
+    <div class="sch-day" (click)="this.openDay(d)" [style.--background-color]="this.colorDays()">
+      {{this.getDayLetter(d)}}</div>
   </div>
 </div>
 
@@ -15,6 +14,23 @@
       <div class="fulldate">{{month}} {{selectedDate.getDate()}}</div>
     </div>
   </div>
+  <div class="meetings-list" *ngFor="let m of day_meetings">
+    <div class="times">
+      <div class="start">{{m.start_time}}</div>
+      <div class="end">{{m.end_time}}</div>
+    </div>
+    <div class="meetings" *ngIf="m.location">
+      <div class="meeting" [style.background-color]="this.getCourseColor(m)">
+        <div class="m-name">{{this.getCourseName(m)}}</div>
+        <div class="m-location">» {{m.location}}</div>
+        <div class="m-prof">» {{this.getProf(m)}}</div>
+      </div>
+    </div>
+    <div class="meetings" *ngIf="m.date">
+      <div class="meeting event">
+        <div class="m-name">{{m.title}}</div>
+      </div>
+    </div>
+  </div>
   
 </div>
-
