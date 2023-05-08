@@ -1,8 +1,14 @@
-<div *ngIf="day">
-  <h3>{{ day.day | uppercase }} Details</h3>
-  <div>id: {{ day.id }}></div>
-  <div>
-    <label for="day">Week Day:</label>
-    <input id="day" [(ngModel)]="day.day" placeholder="day" />
+<mat-dialog-content class="view-event" [id]="viewid">
+  <div class="inline-event-header">
+      <h1>{{event.title}}</h1>
+      <div class="flexbuttons">
+          <div class="edit-button" (click)="editEvent()" [mat-dialog-close]="true"><i class="bi bi-pencil"></i></div>
+      <div class="delete-button" (click)="openDialog()" [mat-dialog-close]="true"><i class="bi bi-trash"></i></div>
+      </div>
   </div>
-</div>
+  <div class="event-date">{{getDateString()}}</div>
+  <div class="event-time">{{getTimeString()}}</div>
+  <div class="notes-header"><span>Notes</span></div>
+  <div class="event-notes">{{this.convertNotes()}}</div>
+  <button mat-stroked-button color="basic" id="cancel" [mat-dialog-close]="true">Cancel</button>
+</mat-dialog-content>

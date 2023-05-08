@@ -16,7 +16,7 @@ export class CourseService {
 
   nextInstID: number = 0;
   nextCourseID: number = 0;
-  instructorList: Instructor[];
+  instructorList: Instructor[] = [];
   coursesList: Course[] = [];
 
   addInstructor(newInstructor: Instructor){
@@ -44,6 +44,10 @@ export class CourseService {
     return this.coursesList[id];
   }
 
+  getProf(id: any){
+    return this.instructorList[id];
+  }
+
   getInstructors() {
     return this.http.get<Instructor[]>('https://organize-it-140cc-default-rtdb.firebaseio.com/' + 'instructors.json')
     .pipe(map(responseData => {
@@ -52,6 +56,7 @@ export class CourseService {
         instructorArray.push(responseData[key]);
       }
       this.nextInstID = instructorArray.length;
+      this.instructorList = instructorArray;
       return instructorArray;
     }));
   }

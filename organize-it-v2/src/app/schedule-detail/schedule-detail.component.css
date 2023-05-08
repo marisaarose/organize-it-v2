@@ -1,0 +1,14 @@
+mat-dialog-content { width:50vw; border-radius:5px; border:1px solid black; }
+h1 { color:black; font-family:Nunito; margin:0; }
+.inline-event-header { justify-content: space-between; display:flex; gap:20px; }
+.event-date, .notes-header { font-weight:700; padding:0 20px; color:#282828; font-family:Nunito; }
+.event-time { font-family:Nunito; color:#282828; padding:0 40px; font-size:0.8em; font-style:italic; }
+.event-notes { padding:20px 40px 15px 40px; font-family:Nunito; color:#282828; font-size:0.8em; }
+.edit-button, .delete-button { background-color:#4fc3f7; border:1px solid black; border-radius:5px; text-align:center; height:29px; width:35px; padding-top:6px; align-self: flex-end; }
+.delete-button { background-color:#d65953; }
+.edit-button:hover { background-color:#3bb3e8; cursor:pointer; }
+.delete-button:hover { background-color:#cb433d; cursor:pointer; }
+.bi-pencil, .bi-trash { color:rgb(255,255,255,0.7); }
+.flexbuttons { display:flex; gap: 10px; }
+.notes-header { padding:15px 20px 0 20px; }
+.notes-header span { padding-bottom:7px; border-bottom:1px solid #c53d3d; }
