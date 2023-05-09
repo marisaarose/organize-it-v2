@@ -30,7 +30,10 @@ import { ScheduleDetailComponent, DeleteEDialog } from './schedule-detail/schedu
 import { AddEventComponent } from './add-event/add-event.component';
 import { AddCourseMeetingComponent } from './add-course-meeting/add-course-meeting.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
-import { CourseDetailsComponent } from './course-details/course-details.component';
+import { CourseDetailsComponent, DeleteCDialog, DeleteIDialog } from './course-details/course-details.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
+import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
+import { EditCourseMeetingComponent } from './edit-course-meeting/edit-course-meeting.component';
 
 
 @NgModule({
@@ -54,7 +57,12 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     AddCourseMeetingComponent,
     EditEventComponent,
     DeleteEDialog,
-    CourseDetailsComponent
+    CourseDetailsComponent,
+    EditCourseComponent,
+    DeleteCDialog,
+    DeleteIDialog,
+    EditInstructorComponent,
+    EditCourseMeetingComponent
   ],
   imports: [
     BrowserModule,

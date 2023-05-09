@@ -10,6 +10,8 @@ import { Course_Meeting } from './course_meeting';
 import { AddCourseMeetingComponent } from './add-course-meeting/add-course-meeting.component';
 import { EditEventComponent } from './edit-event/edit-event.component';
 import { ScheduleDetailComponent } from './schedule-detail/schedule-detail.component';
+import { Course } from './course';
+import { EditCourseMeetingComponent } from './edit-course-meeting/edit-course-meeting.component';
 
 @Injectable({
   providedIn: 'root',
@@ -61,6 +63,16 @@ export class ScheduleService {
     });
   }
 
+  newDialogEditMeeting(meeting: Course_Meeting) {
+    const dialogRef = this.dialog.open(EditCourseMeetingComponent, {
+      data: meeting,
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+      location.reload();
+    });
+  }
+
   addEvent(newEvent: Event) {
     return this.http.put(
       'https://organize-it-140cc-default-rtdb.firebaseio.com/events/' +
@@ -93,6 +105,14 @@ export class ScheduleService {
         newMeeting.meeting_id +
         '.json',
       newMeeting
+    );
+  }
+
+  deleteMeeting(id: number) {
+    return this.http.delete(
+      'https://organize-it-140cc-default-rtdb.firebaseio.com/course_meetings/' +
+        id +
+        '.json'
     );
   }
 

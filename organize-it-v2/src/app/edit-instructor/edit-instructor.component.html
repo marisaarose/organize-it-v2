@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Edit Instructor</h2>
+<mat-dialog-content class="add-instructor">
+    <form [formGroup]="instructorForm" (ngSubmit)="onSubmit()" id="instructorForm">
+
+        <mat-form-field appearance="fill" class="instinput">
+            <mat-label>First Name</mat-label>
+            <input matInput id="first_name" type="text" formControlName="first_name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="instinput">
+            <mat-label>Last Name</mat-label>
+            <input matInput id="last_name" type="text" formControlName="last_name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="instinput">
+            <mat-label>Email</mat-label>
+            <input matInput id="email" type="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="instinput">
+            <mat-label>Office</mat-label>
+            <input matInput id="office" type="text" formControlName="office">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="instinput">
+            <mat-label>Office Details</mat-label>
+            <textarea matInput id="office_details" type="textarea" formControlName="office_details"></textarea>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!instructorForm.valid"
+            [mat-dialog-close]="true">Submit</button>
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+    </form>
+</mat-dialog-content>

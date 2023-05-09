@@ -17,10 +17,6 @@ export class CourseListComponent implements OnInit {
   newDialog(type: string) {
     if(type == 'course'){
       this.courseService.newCoursesDialog();
-    } else if(type == 'instructor'){
-      this.courseService.newInstructorsDialog();
-    } else if(type == 'meeting'){
-      this.scheduleService.newMeetingDialog();
     }
   }
 

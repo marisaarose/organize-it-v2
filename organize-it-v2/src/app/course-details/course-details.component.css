@@ -1,0 +1,25 @@
+mat-dialog-content { width:50vw; }
+h1, h3 { color:black; font-family:Nunito; margin:0; }
+.bi-plus-circle-fill { color:#c53d3d; font-size:30px; }
+.bi-plus-circle-fill:hover { color:#b62b2b; cursor:pointer; }
+.opposite-flex { display:flex; justify-content: space-between; }
+.inline-course-header { display:flex; gap:20px; justify-content: space-between; }
+.view-course { color:black; font-family:Nunito; border:1px solid black; border-radius:5px; }
+.course-details { padding:10px; font-size:0.9em; }
+.edit-button, .delete-button { background-color:#4fc3f7; border:1px solid black; border-radius:5px; text-align:center; height:29px; width:35px; padding-top:6px; align-self: flex-end; }
+.delete-button { background-color:#d65953; }
+.edit-button:hover { background-color:#3bb3e8; cursor:pointer; }
+.delete-button:hover { background-color:#cb433d; cursor:pointer; }
+.bi-pencil, .bi-trash { color:rgb(255,255,255,0.7); }
+.flexbuttons { display:flex; gap: 10px; }
+.inline-info { display:flex; align-items: center; gap:10px; padding:5px 20px; font-style:italic; font-size:0.9em; }
+.coursecolor span, .course-meetings span, .instructor-info span { font-weight:700; }
+.coursecolor { line-height:50px; display:flex; align-items: center; }
+.colorblob { margin-left:10px; width:50px; height:30px; border-radius:5px; border:1px solid black; display:inline-block; }
+.meetings-contain, .instructor-contain { display:flex; gap:5px; }
+.meeting-block { width:30px; height:30px; line-height:30px; border-radius:5px; border:1px solid black; text-align: center; color:white; font-weight:700; }
+.meeting-block:hover { cursor:pointer; }
+.times { font-style:italic; font-size:0.9em; padding:5px 15px; }
+.instructor { font-size:0.9em; padding:5px 15px; }
+.details-header { padding:10px 0; }
+.details-header span { padding-bottom:7px; border-bottom:1px solid #c53d3d; font-weight:700; font-size:1.2em; }
