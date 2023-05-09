@@ -1,1 +1,8 @@
-<p>courses works!</p>
+<div class="course-container">
+    <mat-card class="course-card" [style.background-color]="course.color">
+      <mat-card-content class="clickable" (click)="viewCourse()">
+        <mat-card-title>{{course.name}}</mat-card-title>
+        <div class="details">» Details</div>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>New Course</h2>
+<mat-dialog-content class="add-course">
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" id="courseForm">
+
+        <mat-form-field appearance="fill" class="courseinput">
+            <mat-label>Name</mat-label>
+            <input matInput id="name" type="text" formControlName="name" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="courseinput">
+            <mat-label>Color</mat-label>
+            <input matInput id="color" type="color" formControlName="color" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="courseinput">
+            <mat-label>Credits</mat-label>
+            <input matInput id="credits" type="number" formControlName="credits">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Type</mat-label>
+            <mat-select id="type" formControlName="type" required>
+                <mat-option value="in-person">In-Person</mat-option>
+                <mat-option value="online">Online</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Instructor</mat-label>
+            <mat-select id="instructor" formControlName="instructor">
+              <mat-option *ngFor="let i of instructor" [value]="i.instructor_id">
+                {{i.first_name}} {{i.last_name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field appearance="fill" class="courseinput">
+            <mat-label>Details</mat-label>
+            <textarea matInput id="details" type="textarea" formControlName="details"></textarea>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!courseForm.valid"
+            [mat-dialog-close]="true">Submit</button>
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+    </form>
+</mat-dialog-content>

@@ -12,7 +12,6 @@ import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class TaskDetailsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) private data: Task, private taskService: TaskService, private courseService: CourseService, private dialog: MatDialog) {}
-  course: Course[];
   task: Task = this.data;
   courseName: string = "";
   courseColor: string = "";

@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Edit Course Meeting</h2>
+<mat-dialog-content class="add-meeting">
+    <form [formGroup]="meetingForm" (ngSubmit)="onSubmit()" id="meetingForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Course</mat-label>
+            <mat-select id="course" formControlName="course" required>
+                <mat-option *ngFor="let c of course" [value]="c.course_id">
+                    {{c.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="meetinginput">
+            <mat-label>Location</mat-label>
+            <input matInput id="location" type="text" formControlName="location">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Day</mat-label>
+            <mat-select id="day" formControlName="day" required>
+                <mat-option *ngFor="let d of days" [value]="d">
+                    {{d}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="meetinginput">
+            <mat-label>Start Time</mat-label>
+            <input matInput id="start_time" type="time" formControlName="start_time" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="meetinginput">
+            <mat-label>End Time</mat-label>
+            <input matInput id="end_time" type="time" formControlName="end_time" required>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="!meetingForm.valid"
+            [mat-dialog-close]="true">Submit</button>
+        <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+    </form>
+</mat-dialog-content>

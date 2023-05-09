@@ -1,0 +1,54 @@
+<mat-dialog-content class="view-course" [id]="viewid">
+    <div class="inline-course-header">
+        <h1>{{course.name}}</h1>
+        <div class="flexbuttons">
+            <div class="edit-button" (click)="editCourse()" [mat-dialog-close]="true"><i class="bi bi-pencil"></i></div>
+        <div class="delete-button" (click)="openDialogC()" [mat-dialog-close]="true"><i class="bi bi-trash"></i></div>
+        </div>
+    </div>
+    <div class="inline-info">
+        <div class="credits">{{course.credits}} credits</div>
+        <div>//</div>
+        <div class="type">{{course.type}}</div>
+    </div>
+    <div class="coursecolor">
+        <span>Course Color:</span>
+        <div class="colorblob" [style.background-color]="course.color"></div>
+    </div>
+    <div class="course-meetings">
+        <div class="opposite-flex">
+            <span>Course Meetings:</span>
+            <div class="add-meeting" (click)="newDialog('meeting')"><i class="bi bi-plus-circle-fill"></i></div>
+        </div>
+        
+        <div class="meetings-contain">
+            <div class="meetings" *ngFor="let m of course_meetings">
+                <div class="meeting-block" [style.background-color]="this.colors[this.weekdays.indexOf(m.day)]" (click)="editCMDialog(m)">{{this.getLetter(m.day)}}</div>
+            </div>
+        </div>
+        <div class="times" *ngIf="course_meetings[0] != null">
+            {{this.getTimeString(course_meetings[0])}}
+        </div>
+    </div>
+
+    <div class="instructor-info">
+        <div class="opposite-flex">
+            <span>Instructor Information:</span>
+            <div class="add-instructor" (click)="newDialog('instructor')"><i class="bi bi-plus-circle-fill"></i></div>
+        </div>
+        <div class="instructor-contain">
+            <div class="instructor" *ngIf="instructor">
+                <b>Name</b>: {{instructor.first_name}} {{instructor.last_name}}<br>
+                <b>Email</b>: {{instructor.email}}<br>
+                <b>Office</b>: {{instructor.office}}<br>
+                <b>Office Details</b>: {{instructor.office_details}}<br>
+                <button mat-button color="primary" (click)="editInstrDialog()">Edit Instructor</button>
+                <button mat-button color="warn" (click)="openDialogI()">Delete Instructor</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="details-header"><span>Details</span></div>
+    <div class="course-details">{{this.convertDetails()}}</div>
+    <button mat-stroked-button color="basic" id="cancel" [mat-dialog-close]="true">Cancel</button>
+</mat-dialog-content>
