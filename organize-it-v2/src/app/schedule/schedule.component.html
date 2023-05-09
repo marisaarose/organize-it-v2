@@ -20,7 +20,7 @@
       <div class="end">{{this.getTimeString(m)[1]}}</div>
     </div>
     <div class="meetings" *ngIf="m.location">
-      <div class="meeting" [style.background-color]="this.getCourseColor(m)">
+      <div class="meeting" [style.background-color]="this.getCourseColor(m)" (click)="viewCourse(m)">
         <div class="m-name">{{this.getCourseName(m)}}</div>
         <div class="m-location">» {{m.location}}</div>
         <div class="m-prof">» {{this.getProf(m)}}</div>
