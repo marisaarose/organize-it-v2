@@ -6,12 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddInstructorComponent } from './add-instructor/add-instructor.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { map } from 'rxjs';
-import { CourseDetailsComponent } from './course-details/course-details.component';
-import { EditCourseComponent } from './edit-course/edit-course.component';
 import { ScheduleService } from './schedule.service';
 import { Course_Meeting } from './course_meeting';
+import { CourseDetailsComponent } from './course-details/course-details.component';
+import { EditCourseComponent } from './edit-course/edit-course.component';
 import { EditInstructorComponent } from './edit-instructor/edit-instructor.component';
-
 @Injectable({
   providedIn: 'root',
 })

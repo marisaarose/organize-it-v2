@@ -127,6 +127,11 @@ export class ScheduleComponent {
     this.scheduleService.newDialogView(event);
   }
 
+  viewCourse(meeting: Course_Meeting){
+    var course = this.courseService.getCourse(meeting.course);
+    this.courseService.newDialogView(course);
+  }
+
   openDay(day: number) {
     this.day_meetings = [];
     this.selectedDay = day;
