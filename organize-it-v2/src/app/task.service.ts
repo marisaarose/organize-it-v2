@@ -20,7 +20,6 @@ export class TaskService {
     const dialogRef = this.dialog.open(AddTaskComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      location.reload();
     });
   }
 

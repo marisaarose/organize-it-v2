@@ -33,7 +33,6 @@ export class ScheduleService {
     const dialogRef = this.dialog.open(AddEventComponent);
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      location.reload();
     });
   }
 
@@ -50,7 +49,7 @@ export class ScheduleService {
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
-      //location.reload();
+      location.reload();
     });
   }
 
